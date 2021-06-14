@@ -224,7 +224,8 @@ public class Main {
 				System.out.println("We can subtract an ace from a king and get " + Math.abs(getSubstraction((int)ace[0], king))
 						+ " or " + Math.abs(getSubstraction((int)ace[1], king))); 
 				//casting ace variable from double to int because method accepts int arguments
-					
+				//Method calls to perform math operations and return results
+
 				System.out.printf(
 						"When we divide, we have to be explicit and we can only divide divisible numbers together,"
 								+ "\nmeaning, you have to get a whole number when dividing."
