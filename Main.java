@@ -31,12 +31,21 @@ public class Main {
 		boolean continueProgram;
 		continueProgram = true && !false;
 		while (continueProgram) {
+			
+			//Code that uses random number generators to be used to create a random output for card suits and ranks
+			//To be used later in code
+			Random randomSuits = new Random();
+			int randomNumbers = randomSuits.nextInt(3);
 
+			Random randomRanks = new Random();
+			int randomNumbers2 = randomRanks.nextInt(12);
+			
 			// Variables to hold the values for face cards to be used later
+			int cardValue = 5;
 			int jack = 11;
 			int queen = 12;
 			int king = 13;
-			double ace[] = { 1, 14 };
+			double ace[] = { 1.0, 14.0 };
 			boolean blackJack = true;
 			
 			// The rules in Black Jack is to not go over 21. That will never change.
@@ -56,7 +65,7 @@ public class Main {
 			//Greeting message that introduces the game and greets user. Asks for age and name.
 			
 			while(true) {
-				System.out.println("Hola! Guten Tag! Bonjour! Nǐn hǎo! Olá!");
+				System.out.println("Hola! Guten tag! Bonjour! Nǐn hǎo! Olá!");
 				break;
 				//This break just stops the while loop from an infinite print statement loop.
 				//I understand this is bad programming. This is to satisfy requirements
@@ -67,11 +76,14 @@ public class Main {
 			if(hello.equals(greeting)) {
 				System.out.println(greeting + hello);
 			}else {System.out.println(hello + greeting);}
-			//Cannot use == comparing to compare string Objects
 			
+			//Cannot use == comparing string Objects, it will always be false. 
 			
-			System.out.println("This is a quick informational tutorial to a game, " 
-								+ "similar to black jack called 'Kazino'");
+			String tutorialMessage = new String("This is a quick informational tutorial to a game,");
+			String tutorialMessage2 = new String("similar to black jack called 'Kazino'");
+			
+			System.out.println(tutorialMessage.compareTo(tutorialMessage2) < 0 ? tutorialMessage +  " " + tutorialMessage2 :
+				tutorialMessage2 +  " " + tutorialMessage );
 
 			Scanner scanner = new Scanner(System.in);
 			System.out.println("What's your first name? ");
@@ -117,38 +129,49 @@ public class Main {
 					System.out
 							.println("There are four suits and there are 13 ranks." + "\nFrom ascendng order, you have "
 									+ ranksInDeck[1] + ", " + ranksInDeck[2] + " through " + ranksInDeck[10]);
-					System.out.println("Then you have suits, ");
-					for (int i = 0;i <suitsInDeck.length ; i++) {
+					System.out.print("Then you have suits, ");
+					for (int i = 0; i <suitsInDeck.length ; i++) {
+						if (i == 3)
+								continue;
+				//Continue keyword does not include the one iteration indicated in the loop when it reaches 3
+				//It will not print the word "clubs", which is the 3rd  index/ fourth element in the suitsInDeck array
 						System.out.println(suitsInDeck[i] + ", ");
 					
 					}
-					System.out.print("so every cards has a combination of a suit and a rank.");
-					//Code that uses random number generators to be used to create a random output for card suits and ranks
-					Random randomSuits = new Random();
-					int randomNumbers = randomSuits.nextInt(3);
-
-					Random randomRanks = new Random();
-					int randomNumbers2 = randomRanks.nextInt(12);
-					System.out.println("For example, "
-							+ ranksInDeck[randomNumbers2] + " of " + suitsInDeck[randomNumbers]);
+					System.out.print("and lastly, clubs. So every cards has a combination of a suit and a rank.");
+			
+					System.out.print("\nFor example, "
+							+ ranksInDeck[randomNumbers2] + " of " + suitsInDeck[randomNumbers]+".");
 
 					
 				} else {
-					System.out.println("Lets go over the basics.");
-					System.out.println("There are four suits and there are 13 ranks");
+					System.out.println("Lets go over the basic, basics.");
+					System.out
+							.println("There are four suits and there are 13 ranks." + "\nFrom ascendng order, you have "
+									+ ranksInDeck[1] + ", " + ranksInDeck[2] + " through " + ranksInDeck[10]);
+					System.out.println("Then you have suits, ");
+					int j = suitsInDeck.length - 1;
+					while ( j >= 0) {
+						System.out.print(suitsInDeck[j] + ", ");
+						j--;
+				}
+					
+					System.out.print("so every cards has a combination of a suit and a rank.");
+			
+					System.out.print("\nFor example, "
+							+ ranksInDeck[randomNumbers2] + " of " + suitsInDeck[randomNumbers]+".");
 
 				}
 				
 				
-				
-				System.out.println("In Black Jack, if your first two cards added are " + BLACK_JACK + ", "
+				System.out.println("\nIn Black Jack, if your first two cards added are " + BLACK_JACK + ", "
 						+ "you get Black Jack!");
 				System.out.println("In Black Jack, all  face cards are numerically valued at 10");
 				System.out.println("But in 'Kazino', face cards are numerically valued in ascending order.");
 				System.out.println("For instance, a Jack is " + jack + ".");
 				System.out.println("A Queen is valued as " + queen + ".");
 				System.out.println("A king is valued as " + king + ".");
-				System.out.println("And an ace is value" + ace[0] + " and also " + ace[1] + ".");
+				System.out.println("And an ace is value " + ace[0] + " and also " + ace[1] + ".");
 				System.out.print("Let's do a quick review to make sure you understand \n" + "or paying attention.");
 				System.out.println("What is the value of an king?" + " Enter a number" + "\n PRESS 1 for 10"
 						+ "\n PRESS 2 for 13" + "\n PRESS 3 for 9" + "\n PRESS 4 none of the above");
@@ -184,21 +207,21 @@ public class Main {
 				
 				
 				//Loop that ask user for input. Does not terminate until user answers correctly
-				System.out.println("Alright, let's see if you're stpayiing attention");
+				System.out.println("Alright, let's see if you're still payiing attention");
 				int guessedCardLimit;
 				do {
 				System.out.println("What's the is the limit when adding in Kazino?");
 				guessedCardLimit = scanner.nextInt();
 				}
 				while(guessedCardLimit != 14);
-				
+				scanner.close();
 					
 		
 				System.out.println("So, since in this game each card has a numerical value \n"
 						+ "you can add, subtract, multiple or divide them together,\n"
 						+ "but you have to be explicit.\n" + "Remember, you're only limited from 1 to 14.");
 				
-				System.out.println("We can subtract that same cards and get " + Math.abs(getSubstraction((int)ace[0], king))
+				System.out.println("We can subtract an ace from a king and get " + Math.abs(getSubstraction((int)ace[0], king))
 						+ " or " + Math.abs(getSubstraction((int)ace[1], king))); 
 				//casting ace variable from double to int because method accepts int arguments
 					
@@ -206,15 +229,15 @@ public class Main {
 						"When we divide, we have to be explicit and we can only divide divisible numbers together,"
 								+ "\nmeaning, you have to get a whole number when dividing."
 								+ "\nSo dividing an ace at 14 and a 2 together can work, because you get %.2f",
-						getDivision(ace[1], 2));
+						getDivision((int)ace[1],(int) 2));
 				System.out.println("\nBut dividing a queen and a king won't work because you get a remainder of " + queen%13+".");
 				System.out.println("So when mulitplying, it should be simple, but the operation cannot go over 14, "
-						+ "\nso a 2 and 7 is fine, but a 2 and an 8 is illegal because that's " + getMultiplication((int) 2, (int) 8));
-				
-				Random randomCardNumber = new Random();
+						+ "\nso a 2 and 7 is fine, but a 2 and an 8 is illegal because that's " + getMultiplication(2, 8));
+				System.out.println("Just some obvious concepts. You can always the add the same card values together"
+						+ "\n, only if from it's an ace to to 7. So a 5 of heart and a 5 of ace can easily be added together to get " + (cardValue+=cardValue));
 				
 			
-				System.out.print("\nWell, thats all for now. Please stay tune for the next version!");
+				System.out.print("\nWell, that's all for now. Please stay tune for the next version!");
 				continueProgram = false;
 
 			}
@@ -257,7 +280,7 @@ public class Main {
 	public static int getMultiplication(int card1, int card2) {
 		int result = (card1 * card2);
 		return result;
+	
 	}
-
 
 }
